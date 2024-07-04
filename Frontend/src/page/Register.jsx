@@ -11,8 +11,28 @@ const Register = () => {
   const [message, setMessage] = useState('');
   const [error, setError] = useState('');
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validateMobile = (mobile) => {
+    const mobileRegex = /^\d{10}$/;
+    return mobileRegex.test(mobile);
+  };
+
   const handleRegister = async (e) => {
     e.preventDefault();
+
+    if (!validateEmail(email)) {
+      setError('Invalid email format');
+      return;
+    }
+
+    if (!validateMobile(mobile)) {
+      setError('Mobile number must be exactly 10 digits');
+      return;
+    }
 
     try {
       const response = await axios.post(`${backendUrl}/api/users/register`, {
@@ -22,15 +42,15 @@ const Register = () => {
         mobile,
       });
 
-      setMessage(`Registration successful! Please check your email (${email}) for login instructions , you can close this page .`); 
+      setMessage(`Registration successful! Please check your email (${email}) for login instructions. You can close this page.`);
       setError('');
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
-        setError(error.response.data.message); 
+        setError(error.response.data.message);
       } else {
-        setError('Registration failed. Please try again.'); 
+        setError('Registration failed. Please try again.');
       }
-      setMessage(''); 
+      setMessage('');
     }
   };
 
