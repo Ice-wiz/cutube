@@ -24,7 +24,7 @@
     ```
 5. Start the development server:
     ```sh
-    npm run dev
+    npm run dev (frontend and backend seperately)
     ```
 
 ## About the Platform
