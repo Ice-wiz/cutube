@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 import VideoCard from '../component/Video';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const ListingPage = () => {
     const [users, setUsers] = useState([]);
@@ -14,7 +15,7 @@ const ListingPage = () => {
 
     const fetchAllUsers = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/api/users/all', {
+            const response = await axios.get(`${backendUrl}/api/users/all`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },

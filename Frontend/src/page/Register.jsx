@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Footer from '../component/Footer';
+const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
 const Register = () => {
   const [firstname, setFirstname] = useState('');
@@ -14,7 +15,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(`http://localhost:3000/api/users/register`, {
+      const response = await axios.post(`${backendUrl}/api/users/register`, {
         firstname,
         lastname,
         email,

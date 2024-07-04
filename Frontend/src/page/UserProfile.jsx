@@ -4,6 +4,7 @@ import axios from 'axios';
 import VideoCard from '../component/Video';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+const backendUrl = import.meta.env.VITE_BACKEND_URL; 
 
 const UserProfile = () => {
     const { userId } = useParams();
@@ -26,7 +27,7 @@ const UserProfile = () => {
         setLoading(true);
         setError('');
         try {
-            const response = await axios.get(`http://localhost:3000/api/users/${userId}`, {
+            const response = await axios.get(`${backendUrl}/api/users/${userId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`,
                 },

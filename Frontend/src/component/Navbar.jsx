@@ -1,34 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
-const Navbar = ({ isAuthenticated, onLogout }) => {
+const Navbar = ({ isAuthenticated, onLogout, user }) => {
   const navigate = useNavigate();
-  const [user, setUser] = useState(null);
-  const token = localStorage.getItem('token');
-
-  useEffect(() => {
-    const fetchUserDetails = async () => {
-      if (token) {
-        try {
-          const response = await axios.get('http://localhost:3000/api/users/me', {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
-          setUser(response.data);
-        } catch (error) {
-          console.error('Error fetching user details:', error);
-        }
-      }
-    };
-
-    fetchUserDetails();
-  }, [token]);
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    setUser(null);
     onLogout(); // Notifying App component to update isAuthenticated state
     navigate('/login');
   };
@@ -40,7 +16,7 @@ const Navbar = ({ isAuthenticated, onLogout }) => {
         <div className="hidden md:flex space-x-6">
           {isAuthenticated ? (
             <>
-              <Link to='/profile' className='hover:text-gray-400'>{user ? user.firstname : 'Profile'}</Link>
+              <Link to="/profile" className="hover:text-gray-400">{user ? user.firstname : 'Profile'}</Link>
               <Link to="/listing" className="hover:text-gray-400">Listing Page</Link>
               <button onClick={handleLogout} className="hover:text-gray-400">Logout</button>
             </>
