@@ -45,7 +45,7 @@ const Register = () => {
         mobile,
       });
 
-      setMessage(`Registration successful! Please check your email (${email}) for login instructions. You can close this page.`);
+      setMessage(`Registration successful! Please check your email`);
       setError('');
     } catch (error) {
       if (error.response && error.response.data && error.response.data.message) {
