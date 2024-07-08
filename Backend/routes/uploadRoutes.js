@@ -21,7 +21,7 @@ const fileFilter = (allowedTypes) => {
 // Middleware to handle profile picture uploads with size limit of 1MB and specific file types
 const uploadProfilePic = multer({
   storage: multer.memoryStorage(),
-  limits: { fileSize: 1 * 1024 * 1024 }, // 1MB
+  limits: { fileSize: 6 * 1024 * 1024 }, // 1MB
   fileFilter: fileFilter(['image/png', 'image/jpg', 'image/jpeg']),
 });
 
