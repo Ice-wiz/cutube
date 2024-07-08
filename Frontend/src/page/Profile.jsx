@@ -36,7 +36,7 @@ const useUserDetails = () => {
                 setProfile({
                     firstName: user.firstname,
                     lastName: user.lastname,
-                    profilePictureUrl: user.profilePicture || '/default-profile.png',
+                    profilePictureUrl: user.profilePicture || 'https://via.placeholder.com/150/000000/FFFFFF/?text=Profile' ,
                     bio: user.bio,
                     videos: user.videos
                 });
