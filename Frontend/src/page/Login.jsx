@@ -44,7 +44,6 @@ const Login = ({ onLogin }) => {
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
-      <Navbar />
       <main className="flex-grow flex flex-col items-center justify-center px-4">
         <form onSubmit={handleLogin} className="bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
           <h2 className="text-2xl font-bold mb-6">Login</h2>
