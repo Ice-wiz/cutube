@@ -36,7 +36,7 @@ const Navbar = ({ isAuthenticated, onLogout, user }) => {
             </svg>
           </button>
         </div>
-        <div className={`md:flex space-x-6 ${isMobileMenuOpen ? 'block' : 'hidden'} md:block`}>
+        <div className="hidden md:flex space-x-6">
           {isAuthenticated ? (
             <>
               <Link to="/profile" className="hover:text-gray-400">
@@ -54,11 +54,11 @@ const Navbar = ({ isAuthenticated, onLogout, user }) => {
         </div>
       </div>
       {isMobileMenuOpen && (
-        <div className="md:hidden">
-          <div className="flex flex-col space-y-4 mt-4">
+        <div className="md:hidden absolute right-0 top-16 bg-gray-900 w-full border-t border-stone-600">
+          <div className="flex flex-col space-y-4 mt-4 px-4">
             {isAuthenticated ? (
               <>
-{/*                 <Link to="/profile" className="hover:text-gray-400" onClick={toggleMobileMenu}>
+                <Link to="/profile" className="hover:text-gray-400" onClick={toggleMobileMenu}>
                   {user ? user.firstname : 'Profile'}
                 </Link>
                 <Link to="/listing" className="hover:text-gray-400" onClick={toggleMobileMenu}>
@@ -66,12 +66,12 @@ const Navbar = ({ isAuthenticated, onLogout, user }) => {
                 </Link>
                 <button onClick={() => { handleLogout(); toggleMobileMenu(); }} className="hover:text-gray-400">
                   Logout
-                </button> */}
+                </button>
               </>
             ) : (
               <>
-{/*                 <Link to="/login" className="hover:text-gray-400" onClick={toggleMobileMenu}>Login</Link>
-                <Link to="/register" className="hover:text-gray-400" onClick={toggleMobileMenu}>Register</Link> */}
+                <Link to="/login" className="hover:text-gray-400" onClick={toggleMobileMenu}>Login</Link>
+                <Link to="/register" className="hover:text-gray-400" onClick={toggleMobileMenu}>Register</Link>
               </>
             )}
           </div>
@@ -82,8 +82,6 @@ const Navbar = ({ isAuthenticated, onLogout, user }) => {
 };
 
 export default Navbar;
-
-
 
 
 
