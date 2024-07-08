@@ -56,7 +56,7 @@ const ListingPage = () => {
                                     <div className="flex items-center space-x-4">
                                         <img
                                             src={user.profilePicture || '/default-profile.png'}
-                                            alt={`${user.firstname}'s profile`}
+                                            alt={`${user.firstname}`}
                                             className="w-24 h-24 rounded-full object-cover"
                                         />
                                         <h2 className="text-xl font-bold">{user.firstname}</h2>
