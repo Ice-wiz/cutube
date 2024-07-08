@@ -58,7 +58,7 @@ const Navbar = ({ isAuthenticated, onLogout, user }) => {
           <div className="flex flex-col space-y-4 mt-4">
             {isAuthenticated ? (
               <>
-                <Link to="/profile" className="hover:text-gray-400" onClick={toggleMobileMenu}>
+{/*                 <Link to="/profile" className="hover:text-gray-400" onClick={toggleMobileMenu}>
                   {user ? user.firstname : 'Profile'}
                 </Link>
                 <Link to="/listing" className="hover:text-gray-400" onClick={toggleMobileMenu}>
@@ -66,7 +66,7 @@ const Navbar = ({ isAuthenticated, onLogout, user }) => {
                 </Link>
                 <button onClick={() => { handleLogout(); toggleMobileMenu(); }} className="hover:text-gray-400">
                   Logout
-                </button>
+                </button> */}
               </>
             ) : (
               <>
