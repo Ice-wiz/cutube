@@ -55,7 +55,7 @@ const ListingPage = () => {
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center space-x-4">
                                         <img
-                                            src={user.profilePicture || 'https://via.placeholder.com/150/000000/FFFFFF/?text=Profile'}
+                                            src={user.profilePicture}
                                             alt={`${user.firstname}`}
                                             className="w-24 h-24 rounded-full object-cover"
                                         />
