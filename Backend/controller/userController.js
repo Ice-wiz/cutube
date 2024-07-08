@@ -2,6 +2,7 @@ const User = require('../models/User');
 const sendEmail = require('../utils/sendEmail');
 const bcrypt = require('bcrypt');
 const { generateJWT } = require('../utils/jwt')
+const nodemailer = require('nodemailer')
 const dotenv = require('dotenv');
 dotenv.config()
 
@@ -25,8 +26,6 @@ const generatePassword = (firstname, email, mobile) => {
 const register = async (req, res) => {
     const { firstname, lastname, email, mobile } = req.body;
 
-    console.log('Request body:', req.body);
-
     try {
         // Check if the user already exists
         const userExists = await User.findOne({ email });
@@ -35,10 +34,11 @@ const register = async (req, res) => {
             return res.status(400).json({ message: 'User already exists' });
         }
 
+        // Generate password
         const password = generatePassword(firstname, email, mobile);
         const hashedPassword = await bcrypt.hash(password, 10);
 
-
+        // Create new user instance
         const user = new User({
             firstname,
             lastname,
@@ -48,20 +48,39 @@ const register = async (req, res) => {
             emailRegistered: false,
         });
 
-        // Define email 
-        const subject = 'Your Account Details';
-        const text = `
-            Your account has been created successfully.\n\n
-            Your temporary password is: ${password}\n\n
-            Please log in using the following link: ${process.env.LOGIN_URL}
-        `;
-
-        
-        await sendEmail(email, subject, text);
-
+        // Save user to the database
         await user.save();
 
-        
+        // Set up Nodemailer transporter
+        let transporter = nodemailer.createTransport({
+            host: process.env.SMTP_HOST,
+            port: process.env.SMTP_PORT,
+            secure: false,
+            auth: {
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASS,
+            },
+        });
+
+        // Define email options
+        let mailOptions = {
+            from: `"${process.env.SENDER_NAME}" <${process.env.SMTP_USER}>`,
+            to: email,
+            subject: "Account Verification Email",
+            text: `Your account has been created successfully.\n\nYour temporary password is: ${password}\n\nPlease log in using the following link: ${process.env.LOGIN_URL}`,
+            html: `<p>Your account has been created successfully.</p>
+                   <p>Your temporary password is: <strong>${password}</strong></p>
+                   <p>Please log in using the following link: <a href="${process.env.LOGIN_URL}">${process.env.LOGIN_URL}</a></p>`,
+        };
+
+        // Send email
+        try{
+            let  info= await transporter.sendMail(mailOptions);
+            console.log(info , "info")
+        }catch(error){
+            console.log(error)
+        }
+
         res.status(201).json({ message: 'User registered successfully. Please check your email for your password.' });
     } catch (err) {
         console.log('Error registering user:', err);
@@ -70,10 +89,10 @@ const register = async (req, res) => {
 };
 
 const login = async (req, res) => {
-    const { firstname, password } = req.body;
+    const { firstname:email, password } = req.body;
 
     try {
-        const user = await User.findOne({ firstname });
+        const user = await User.findOne({ email });
 
         if (!user) {
             return res.status(400).json({ message: 'User not found' });
@@ -96,6 +115,7 @@ const login = async (req, res) => {
         res.status(500).json({ error: 'Error logging in user' });
     }
 };
+
 
 
 // Get all users (unprotected)
