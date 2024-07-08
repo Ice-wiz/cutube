@@ -70,8 +70,8 @@ const Navbar = ({ isAuthenticated, onLogout, user }) => {
               </>
             ) : (
               <>
-                <Link to="/login" className="hover:text-gray-400" onClick={toggleMobileMenu}>Login</Link>
-                <Link to="/register" className="hover:text-gray-400" onClick={toggleMobileMenu}>Register</Link>
+{/*                 <Link to="/login" className="hover:text-gray-400" onClick={toggleMobileMenu}>Login</Link>
+                <Link to="/register" className="hover:text-gray-400" onClick={toggleMobileMenu}>Register</Link> */}
               </>
             )}
           </div>
