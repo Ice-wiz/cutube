@@ -275,7 +275,7 @@ const Profile = () => {
                 <div className="w-full max-w-3xl bg-gray-800 p-6 rounded-lg shadow-lg flex flex-col items-center mb-8">
                     <div className="relative mb-4">
                         <img
-                            src={profile.profilePictureUrl}
+                            src={profile.profilePictureUrl || 'https://via.placeholder.com/150/000000/FFFFFF/?text=Profile'}
                             alt="Profile"
                             className="w-32 h-32 rounded-full object-cover border-4 border-gray-600"
                         />
