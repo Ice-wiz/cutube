@@ -55,7 +55,7 @@ const Navbar = ({ isAuthenticated, onLogout, user }) => {
       </div>
       {isMobileMenuOpen && (
         <div className="md:hidden absolute right-0 top-16 bg-gray-900 w-full border-t border-stone-600">
-          <div className="flex flex-col space-y-4 mt-4 px-4">
+          <div className="flex flex-col space-y-4 mt-4 px-4 py-2">
             {isAuthenticated ? (
               <>
                 <Link to="/profile" className="hover:text-gray-400" onClick={toggleMobileMenu}>
