@@ -58,7 +58,7 @@ const Login = ({ onLogin }) => {
             </div>
           )}
           <div className="mb-4">
-            <label htmlFor="firstname" className="block mb-2 text-sm">First Name</label>
+            <label htmlFor="firstname" className="block mb-2 text-sm">email</label>
             <input
               type="text"
               id="firstname"
