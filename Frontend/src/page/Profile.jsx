@@ -501,7 +501,7 @@ const Profile = () => {
                     </button>
                 </form>
 {/*                 {photoUploading && <p className="mt-4 text-blue-600">Uploading photo...</p>} */}
-                <p className="mt-4 text-blue-600">max : 2 MB </p>
+                <p className="mt-4 text-blue-600">max : 6 MB </p>
                 {error && <p className="mt-4 text-red-600">{error}</p>}
             </Modal>
 
