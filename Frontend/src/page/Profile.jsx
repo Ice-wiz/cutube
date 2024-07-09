@@ -145,7 +145,7 @@ const useVideoUpload = (setProfile, setError) => {
             setIsVideoModalOpen(false);
             setVideoDescription('');
         } catch (error) {
-            setError('Error uploading video. Please try again.');
+            setError('error is here');
             console.error('Error uploading video:', error);
         } finally {
             setUploading(false);
