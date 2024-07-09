@@ -224,7 +224,7 @@ const useVideoUpload = (setProfile, setError) => {
             setIsVideoModalOpen(false);
             setVideoDescription('');
         } catch (error) {
-            setError('Error uploading video');
+            setError('Error uploading video / size should be less than 6 mb ');
             console.error('Error uploading video:', error);
         } finally {
             setUploading(false);
