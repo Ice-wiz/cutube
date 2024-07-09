@@ -329,7 +329,7 @@ const Profile = () => {
                     >
                         Upload Video
                     </button>
-                    {(videoUploading || loading) && <p className="mt-4 text-blue-600">Uploading video...</p>}
+{/*                     {(videoUploading || loading) && <p className="mt-4 text-blue-600">Uploading video...</p>} */}
                     {error && <p className="mt-4 text-red-600">{error}</p>}
                 </div>
             </main>
@@ -382,6 +382,7 @@ const Profile = () => {
                         name="videoFile"
                         accept="video/*"
                         className="mb-4 p-2 bg-gray-700 text-white rounded-md"
+                        placeholder="Video 6mb max"
                         required
                     />
                     <input
@@ -389,6 +390,7 @@ const Profile = () => {
                         name="thumbnail"
                         accept="image/*"
                         className="mb-4 p-2 bg-gray-700 text-white rounded-md"
+                        placeholder="Thumbnail 6mb max"
                         required
                     />
                     <button
@@ -398,7 +400,7 @@ const Profile = () => {
                         Upload
                     </button>
                 </form>
-                {videoUploading && <p className="mt-4 text-blue-600">Uploading video...</p>}
+              {(videoUploading || loading) && <p className="mt-4 text-blue-600">Uploading video...</p>} */}
                 {error && <p className="mt-4 text-red-600">{error}</p>}
             </Modal>
 
