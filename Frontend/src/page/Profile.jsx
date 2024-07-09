@@ -409,7 +409,7 @@ const Profile = () => {
                     >
                         Upload Video
                     </button>
-{/*                     {(videoUploading || loading) && <p className="mt-4 text-blue-600">Uploading video...</p>} */}
+                    {(videoUploading || loading) && <p className="mt-4 text-blue-600">Uploading video...</p>}
                     {error && <p className="mt-4 text-red-600">{error}</p>}
                 </div>
             </main>
