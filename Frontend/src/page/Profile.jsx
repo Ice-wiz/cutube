@@ -98,6 +98,85 @@ const useBioUpdate = (setProfile, setError) => {
 };
 
 // Custom hook for handling video uploads
+// const useVideoUpload = (setProfile, setError) => {
+//     const [uploading, setUploading] = useState(false);
+//     const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
+//     const [videoDescription, setVideoDescription] = useState('');
+//     const [descriptionError, setDescriptionError] = useState('');
+
+//     const handleVideoUpload = useCallback(async (event) => {
+//         event.preventDefault();
+//         setUploading(true);
+//         setError('');
+
+//         const title = event.target.videoTitle.value;
+//         const description = videoDescription.trim();
+//         const wordCount = description.split(/\s+/).length;
+
+//         if (wordCount > 30) {
+//             setDescriptionError('Description cannot exceed 30 words.');
+//             setUploading(false);
+//             return;
+//         }
+
+//         const formData = new FormData();
+//         formData.append('title', title);
+//         formData.append('description', description);
+//         formData.append('video', event.target.videoFile.files[0]);
+//         formData.append('thumbnail', event.target.thumbnail.files[0]);
+
+//         try {
+//             const response = await axios.post(`${backendUrl}/api/uploads/video`, formData, {
+//                 headers: {
+//                     'Content-Type': 'multipart/form-data',
+//                     Authorization: `Bearer ${localStorage.getItem('token')}`
+//                 }
+//             });
+
+//             if (!response.data.success) {
+//                 throw new Error('Failed to upload video');
+//             }
+
+//             setProfile((prevProfile) => ({
+//                 ...prevProfile,
+//                 videos: [...prevProfile.videos, response.data.video]
+//             }));
+
+//             setIsVideoModalOpen(false);
+//             setVideoDescription('');
+//         } catch (error) {
+//             setError('error is here');
+//             console.error('Error uploading video:', error);
+//         } finally {
+//             setUploading(false);
+//         }
+//     }, [videoDescription, setError, setProfile]);
+
+//     const handleDescriptionChange = (event) => {
+//         const description = event.target.value;
+//         const wordCount = description.trim().split(/\s+/).length;
+
+//         if (wordCount > 30) {
+//             setDescriptionError('Description cannot exceed 30 words.');
+//         } else {
+//             setDescriptionError('');
+//         }
+
+//         setVideoDescription(description);
+//     };
+
+//     return {
+//         isVideoModalOpen,
+//         setIsVideoModalOpen,
+//         videoDescription,
+//         setVideoDescription,
+//         descriptionError,
+//         handleVideoUpload,
+//         handleDescriptionChange,
+//         uploading
+//     };
+// };
+
 const useVideoUpload = (setProfile, setError) => {
     const [uploading, setUploading] = useState(false);
     const [isVideoModalOpen, setIsVideoModalOpen] = useState(false);
@@ -145,7 +224,7 @@ const useVideoUpload = (setProfile, setError) => {
             setIsVideoModalOpen(false);
             setVideoDescription('');
         } catch (error) {
-            setError('error is here');
+            setError('Error uploading video');
             console.error('Error uploading video:', error);
         } finally {
             setUploading(false);
@@ -173,9 +252,10 @@ const useVideoUpload = (setProfile, setError) => {
         descriptionError,
         handleVideoUpload,
         handleDescriptionChange,
-        uploading
+        videoUploading: uploading
     };
 };
+
 
 // Custom hook for handling profile picture updates
 const useProfilePictureUpdate = (setProfile, setError) => {
