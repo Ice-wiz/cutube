@@ -462,7 +462,6 @@ const Profile = () => {
                         name="videoFile"
                         accept="video/*"
                         className="mb-4 p-2 bg-gray-700 text-white rounded-md"
-                        placeholder="Video 6mb max"
                         required
                     />
                     <input
@@ -480,7 +479,7 @@ const Profile = () => {
                         Upload
                     </button>
                 </form>
-              {(videoUploading || loading) && <p className="mt-4 text-blue-600">Uploading video...</p>} */}
+                 <p className="mt-4 text-blue-600">upload might take 10-15 seconds [max : 6 MB] </p>
                 {error && <p className="mt-4 text-red-600">{error}</p>}
             </Modal>
 
